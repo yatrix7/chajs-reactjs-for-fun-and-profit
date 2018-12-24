@@ -1,3 +1,10 @@
 {
-	"plates": [45, 35, 25, 10, 5, 2.5, 1.25, 1, 0.5]
+	"plates": [45, 35, 25, 10, 5, 2.5, 1.25, 1, 0.5],
+	"lifts": [
+		{ "liftId": 1, "name": "Low-bar Squat" },
+		{ "liftId": 2, "name": "Deadlift" },
+		{ "liftId": 3, "name": "Shoulder Press" },
+		{ "liftId": 4, "name": "Bench Press" },
+		{ "liftId": 5, "name": "Bent-Over Rows" }
+	]
 }
