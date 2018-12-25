@@ -2,20 +2,20 @@ import React from 'react'
 import { string, arrayOf, object, func } from 'prop-types'
 import './select.css'
 
-const Select = ({ name, label, options, onChange, className }) => (
+const Select = ({ id, label, options, onChange, className }) => (
 	<div className={className}>
 		{label && (
-			<label htmlFor={name} className={'label'}>
+			<label htmlFor={id} className={'label'}>
 				{label}
 			</label>
 		)}
 		<select
-			id={name}
-			name={name}
+			id={id}
+			name="lift"
 			className={'form-control'}
 			onChange={onChange}
 		>
-			<option selected value={-1}>
+			<option defaultValue value={-1}>
 				-
 			</option>
 			{options.map(option => (
@@ -28,7 +28,7 @@ const Select = ({ name, label, options, onChange, className }) => (
 )
 
 Select.propTypes = {
-	name: string.isRequired,
+	id: string.isRequired,
 	label: string,
 	options: arrayOf(object),
 	onChange: func

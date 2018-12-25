@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Lift from '../lift/lift'
 // todo: make this part of the fake API
-import { lifts } from '../../configuration/config.json'
+import { getLifts, getSets, getReps } from '../../api/liftApi'
+import LiftContainer from '../lift/liftContainer'
 
 class WorkoutPlannerPage extends Component {
 	constructor(props) {
@@ -10,30 +10,7 @@ class WorkoutPlannerPage extends Component {
 	}
 
 	render() {
-		const numericOptions = Array.from({ length: 10 }, (v, k) => k + 1).map(
-			x => ({
-				id: x,
-				name: x
-			})
-		)
-
-		const liftOptions = lifts.map(lift => ({
-			id: lift.liftId,
-			name: lift.name
-		}))
-
-		return (
-			<Lift
-				{...{
-					label: 'Primary Lift',
-					name: 'primaryLift',
-					onChange: () => {},
-					lifts: liftOptions,
-					sets: numericOptions,
-					reps: numericOptions
-				}}
-			/>
-		)
+		return <LiftContainer />
 	}
 }
 

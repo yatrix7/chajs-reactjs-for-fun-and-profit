@@ -1,55 +1,19 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Lift from './lift'
-import shortid from 'shortid'
-import { lifts as liftData } from '../../configuration/config.json'
 
-class LiftAccumulator extends Component {
-	constructor(props) {
-		super(props)
-
-		const liftOptions = liftData.map(lift => ({
-			id: lift.liftId,
-			name: lift.name
-		}))
-
-		const numericOptions = Array.from({ length: 10 }, (v, k) => k + 1).map(
-			x => ({
-				id: x,
-				name: x
-			})
-		)
-
-		this.state = {
-			liftOptions,
-			setOptions: numericOptions,
-			repOptions: numericOptions,
-			//name, onChange, label, lifts, sets, reps
-			lifts: [
-				{
-					name: shortid.generate(),
-					label: 'Primary Lift',
-					lifts: liftOptions,
-					sets: numericOptions,
-					reps: numericOptions,
-					onChange: this.onChange
-				}
-			]
-		}
-	}
-
-	addLift() {}
-
-	onChange(e) {
-		console.log(e)
-	}
-
-	componentDidMount() {
-		// go get the lifts
-	}
-
-	render() {
-		return ''
-	}
-}
+const LiftAccumulator = ({ lift, lifts, sets, reps, onChange }) => (
+	<div>
+		{lifts.map(lift => (
+			<Lift {...lift} />
+		))}
+		<button
+			type="button"
+			class="btn btn-primary"
+			onClick={this.props.addLift}
+		>
+			Add Lift
+		</button>
+	</div>
+)
 
 export default LiftAccumulator
