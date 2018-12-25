@@ -11,14 +11,12 @@ class LiftAccumulator extends Component {
 			id: lift.liftId,
 			name: lift.name
 		}))
-
 		const numericOptions = Array.from({ length: 10 }, (v, k) => k + 1).map(
 			x => ({
 				id: x,
 				name: x
 			})
 		)
-
 		this.state = {
 			liftOptions,
 			setOptions: numericOptions,
@@ -30,8 +28,7 @@ class LiftAccumulator extends Component {
 					label: 'Primary Lift',
 					lifts: liftOptions,
 					sets: numericOptions,
-					reps: numericOptions,
-					onChange: this.onChange
+					reps: numericOptions
 				}
 			]
 		}
@@ -51,5 +48,4 @@ class LiftAccumulator extends Component {
 		return ''
 	}
 }
-
 export default LiftAccumulator
