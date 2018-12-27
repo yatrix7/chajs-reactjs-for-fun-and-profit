@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
-import { arrayOf, object } from 'prop-types'
+import { arrayOf, object, func } from 'prop-types'
 import Lift from './lift'
+import liftFactory from '../../helpers/liftFactory'
 
 class LiftContainer extends Component {
 	constructor(props) {
 		super(props)
 
 		this.state = {
-			// initialize the lift
-			lift: { name: '-1', sets: -1, reps: -1 }
+			lift: liftFactory.of()
 		}
-
 		this.onChange = this.onChange.bind(this)
 	}
 
@@ -23,7 +22,8 @@ class LiftContainer extends Component {
 					[e.target.name]: e.target.value
 				}
 			},
-			console.log(this.state.lift)
+			// keep the state synced with parent
+			this.props.onUpdate(this.state.lift)
 		)
 	}
 
@@ -32,17 +32,21 @@ class LiftContainer extends Component {
 
 		return (
 			<Lift
-				{...{ lift: this.state.lift, lifts, sets, reps }}
+				lift={this.state.lift}
+				lifts={lifts}
+				sets={sets}
+				reps={reps}
 				onChange={this.onChange}
 			/>
 		)
 	}
 }
 
-LiftContainer.PropTypes = {
+LiftContainer.propTypes = {
 	lifts: arrayOf(object),
 	sets: arrayOf(object),
-	reps: arrayOf(object)
+	reps: arrayOf(object),
+	onUpdate: func.isRequired
 }
 
 export default LiftContainer

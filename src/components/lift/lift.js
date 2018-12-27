@@ -3,7 +3,7 @@ import { string, arrayOf, object, func } from 'prop-types'
 import Select from '../select/select'
 import shortid from 'shortid'
 
-const Lift = ({ onChange, label, lifts, sets, reps }) => {
+const Lift = ({ lift, label, lifts, sets, reps, onChange }) => {
 	const id = shortid.generate()
 
 	return (
@@ -12,6 +12,8 @@ const Lift = ({ onChange, label, lifts, sets, reps }) => {
 				<Select
 					className={'col-sm'}
 					id={`lift-${id}`}
+					name="liftId"
+					value={lift.liftId}
 					label={label}
 					onChange={onChange}
 					options={lifts}
@@ -26,6 +28,7 @@ const Lift = ({ onChange, label, lifts, sets, reps }) => {
 						type="text"
 						id={`weight-${id}`}
 						name="weight"
+						value={lift.weight}
 						className={'form-control'}
 						onChange={onChange}
 					/>
@@ -36,11 +39,13 @@ const Lift = ({ onChange, label, lifts, sets, reps }) => {
 					className={'col-sm'}
 					name="sets"
 					label="Sets"
+					value={lift.sets}
 					onChange={onChange}
 					options={sets}
 				/>
 				<Select
 					className={'col-sm'}
+					value={lift.reps}
 					// using spread operator to pass props
 					{...{
 						id: `reps-${id}`,
@@ -60,7 +65,7 @@ Lift.defaultProps = {
 }
 
 Lift.propTypes = {
-	name: string.isRequired,
+	lift: object.isRequired,
 	label: string,
 	lifts: arrayOf(object),
 	reps: arrayOf(object),

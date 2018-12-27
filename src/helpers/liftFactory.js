@@ -1,21 +1,16 @@
-// import { lifts as liftData } from '../configuration/config.json'
+import shortid from 'shortid'
 
-// const numericOptions = Array.from({ length: 10 }, (v, k) => k + 1).map(x => ({
-// 	id: x,
-// 	name: x
-// }))
+const liftFactory = function() {
+	return {
+		// need an id for uniqueness
+		id: shortid.generate(),
+		liftId: '-1',
+		weight: 45,
+		sets: -1,
+		reps: -1
+	}
+}
 
-// const lifts = liftData.map(lift => ({
-// 	id: lift.liftId,
-// 	name: lift.name
-// }))
+liftFactory.of = liftFactory
 
-// const liftFactory = (name, label) => ({
-// 	name,
-// 	label,
-// 	lifts,
-// 	sets: numericOptions,
-// 	reps: numericOptions
-// })
-
-// export default liftFactory
+export default liftFactory
