@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with no weight 1`] = `
+<span
+  className="plates point-break-is-a-great-movie"
+>
+  Plates per side: 
+  0
+</span>
+`;
+
+exports[`renders correctly with weight 1`] = `
+<span
+  className="plates point-break-is-a-great-movie"
+>
+  Plates per side: 
+  45: 3, 10: 2
+</span>
+`;
