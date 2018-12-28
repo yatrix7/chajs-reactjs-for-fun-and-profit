@@ -1,0 +1,17 @@
+.workout-header {
+	text-align: left;
+}
+
+.add-button {
+	position: fixed;
+	bottom: 50px;
+	right: 160px;
+	width: 100px;
+}
+
+.save-button {
+	position: fixed;
+	bottom: 50px;
+	right: 50px;
+	width: 100px;
+}

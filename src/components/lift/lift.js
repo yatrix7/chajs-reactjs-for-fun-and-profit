@@ -1,32 +1,33 @@
 import React from 'react'
-import { string, arrayOf, object, func } from 'prop-types'
+import { string, object, func } from 'prop-types'
 import Select from '../select/select'
-import shortid from 'shortid'
+import './lift.css'
 
-const Lift = ({ lift, label, lifts, sets, reps, onChange }) => {
-	const id = shortid.generate()
-
+const Lift = ({ lift, label, options, onChange }) => {
 	return (
-		<div className={'container'}>
-			<div className={'row'}>
+		<section className={'lift'}>
+			<div className={'row select-row'}>
 				<Select
 					className={'col-sm'}
-					id={`lift-${id}`}
+					id={`lift-${lift.id}`}
 					name="liftId"
 					value={lift.liftId}
 					label={label}
 					onChange={onChange}
-					options={lifts}
+					options={options.lifts}
 				/>
 			</div>
 			<div className={'row'}>
 				<div className={'col-sm'}>
-					<label htmlFor={`weight-${id}`} className={'label'}>
+					<label
+						htmlFor={`weight-${lift.id}`}
+						className={'lift__label'}
+					>
 						Weight
 					</label>
 					<input
 						type="text"
-						id={`weight-${id}`}
+						id={`weight-${lift.id}`}
 						name="weight"
 						value={lift.weight}
 						className={'form-control'}
@@ -35,28 +36,28 @@ const Lift = ({ lift, label, lifts, sets, reps, onChange }) => {
 				</div>
 				<Select
 					// explict setting of props
-					id={`sets-${id}`}
+					id={`sets-${lift.id}`}
 					className={'col-sm'}
 					name="sets"
 					label="Sets"
 					value={lift.sets}
 					onChange={onChange}
-					options={sets}
+					options={options.sets}
 				/>
 				<Select
 					className={'col-sm'}
 					value={lift.reps}
 					// using spread operator to pass props
 					{...{
-						id: `reps-${id}`,
+						id: `reps-${lift.id}`,
 						name: 'reps',
 						label: 'Reps',
 						onChange,
-						options: reps
+						options: options.reps
 					}}
 				/>
 			</div>
-		</div>
+		</section>
 	)
 }
 
@@ -67,9 +68,7 @@ Lift.defaultProps = {
 Lift.propTypes = {
 	lift: object.isRequired,
 	label: string,
-	lifts: arrayOf(object),
-	reps: arrayOf(object),
-	sets: arrayOf(object),
+	options: object,
 	onChange: func
 }
 

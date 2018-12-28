@@ -8,6 +8,7 @@ export const getLifts = function() {
 				id: lift.liftId,
 				name: lift.name
 			}))
+
 			resolve(lifts)
 		}, delay)
 	})
@@ -15,26 +16,27 @@ export const getLifts = function() {
 
 export const getSets = () =>
 	new Promise((resolve, reject) =>
-		setTimeout(
-			() =>
-				resolve(
-					data.map(lift => ({
-						id: lift.liftId,
-						name: lift.name
-					}))
-				),
-			delay
-		)
+		setTimeout(() => {
+			const sets = Array.from({ length: 10 }, (v, k) => k + 1).map(x => ({
+				id: x,
+				name: x
+			}))
+
+			resolve(sets)
+		}, delay)
 	)
 
 export const getReps = async function() {
-	setTimeout(function() {
-		// would nomrally be an await in here, but this is fake
-		return Array.from({ length: 20 }, (v, k) => k + 1).map(x => ({
-			id: x,
-			name: x
-		}))
-	}, delay)
+	return await new Promise((resolve, reject) =>
+		setTimeout(() => {
+			const reps = Array.from({ length: 20 }, (v, k) => k + 1).map(x => ({
+				id: x,
+				name: x
+			}))
+
+			resolve(reps)
+		}, delay)
+	)
 }
 
 // export const getLifts = function() {

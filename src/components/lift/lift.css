@@ -1,4 +1,13 @@
-.label {
+.lift {
+	border-left: 4px solid #fb4f14;
+	padding-left: 10px;
+}
+
+.lift__label {
 	text-align: left;
 	width: 100%;
+}
+
+.select-row {
+	margin-bottom: 10px;
 }
