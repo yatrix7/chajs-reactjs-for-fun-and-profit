@@ -30,8 +30,10 @@ Select.propTypes = {
 	id: string.isRequired,
 	name: string.isRequired,
 	label: string,
+	value: string.isRequired,
 	options: arrayOf(object),
-	onChange: func
+	onChange: func,
+	className: string
 }
 
 export default Select

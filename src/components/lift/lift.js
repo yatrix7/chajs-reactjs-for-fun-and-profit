@@ -1,6 +1,8 @@
 import React from 'react'
 import { string, object, func } from 'prop-types'
 import Select from '../select/select'
+import Plates from '../plates/plates'
+
 import './lift.css'
 
 const Lift = ({ lift, label, options, onChange }) => {
@@ -56,6 +58,9 @@ const Lift = ({ lift, label, options, onChange }) => {
 						options: options.reps
 					}}
 				/>
+			</div>
+			<div className={'row'}>
+				<Plates weight={lift.weight} className={'col-lg'} />
 			</div>
 		</section>
 	)

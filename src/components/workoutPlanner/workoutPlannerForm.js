@@ -24,20 +24,22 @@ const WorkoutPlannerForm = ({ lifts, options, actions }) => {
 					{index < lifts.length - 1 && <hr />}
 				</>
 			))}
-			<button
-				type="button"
-				className={'btn btn-secondary add-button'}
-				onClick={actions.onAdd}
-			>
-				Add Lift
-			</button>
-			<button
-				type="button"
-				className={'btn btn-primary save-button'}
-				onClick={actions.onSave}
-			>
-				Save
-			</button>
+			<div className={'buttons'}>
+				<button
+					type="button"
+					className={'btn btn-primary buttons__save float-right'}
+					onClick={actions.onSave}
+				>
+					Save
+				</button>
+				<button
+					type="button"
+					className={'btn btn-secondary buttons__add float-right'}
+					onClick={actions.onAdd}
+				>
+					Add Lift
+				</button>
+			</div>
 		</form>
 	)
 }

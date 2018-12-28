@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with weight 1`] = `
+<div
+  className="keanu-movies"
+>
+  <label
+    className="label"
+    htmlFor="9"
+  >
+    Keanu Movies
+  </label>
+  <select
+    className="form-control"
+    id="9"
+    name="keanumovies"
+    onChange={[MockFunction]}
+    value={9}
+  >
+    <option
+      value={-1}
+    >
+      -
+    </option>
+    <option
+      value={1}
+    >
+      Point Break
+    </option>
+    <option
+      value={2}
+    >
+      John Wick
+    </option>
+    <option
+      value={3}
+    >
+      The Matrix
+    </option>
+  </select>
+</div>
+`;
