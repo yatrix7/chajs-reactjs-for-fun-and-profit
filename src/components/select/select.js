@@ -1,9 +1,10 @@
 import React from 'react'
-import { string, arrayOf, object, func } from 'prop-types'
+import { string, arrayOf, object, func, any } from 'prop-types'
 import './select.css'
 
 const Select = ({ id, name, label, value, options, onChange, className }) => (
 	<div className={className}>
+		{/* only show label if a label is passed */}
 		{label && (
 			<label htmlFor={id} className={'label'}>
 				{label}
@@ -17,7 +18,8 @@ const Select = ({ id, name, label, value, options, onChange, className }) => (
 			onChange={onChange}
 		>
 			<option value={-1}>-</option>
-			{options.map(option => (
+			{/* generate options from an array of id/name pairs */
+			options.map(option => (
 				<option key={option.id} value={option.id}>
 					{option.name}
 				</option>
@@ -30,7 +32,7 @@ Select.propTypes = {
 	id: string.isRequired,
 	name: string.isRequired,
 	label: string,
-	value: string.isRequired,
+	value: any.isRequired,
 	options: arrayOf(object),
 	onChange: func,
 	className: string

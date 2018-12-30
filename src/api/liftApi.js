@@ -1,6 +1,9 @@
+// fake api calls using functions in various flavors
+// setTimeout is used to simulate a the time to go to the server and back
 import { lifts as data } from '../configuration/config.json'
 import { delay } from '../configuration/config.json'
 
+// using function
 export const getLifts = function() {
 	return new Promise(function(resolve, reject) {
 		setTimeout(function() {
@@ -14,6 +17,7 @@ export const getLifts = function() {
 	})
 }
 
+// using arrow function
 export const getSets = () =>
 	new Promise((resolve, reject) =>
 		setTimeout(() => {
@@ -26,6 +30,7 @@ export const getSets = () =>
 		}, delay)
 	)
 
+// using async function
 export const getReps = async function() {
 	return await new Promise((resolve, reject) =>
 		setTimeout(() => {
@@ -38,24 +43,3 @@ export const getReps = async function() {
 		}, delay)
 	)
 }
-
-// export const getLifts = function() {
-// 	return lifts.map(lift => ({
-// 		id: lift.liftId,
-// 		name: lift.name
-// 	}))
-// }
-
-// export const getSets = function() {
-// 	return Array.from({ length: 10 }, (v, k) => k + 1).map(x => ({
-// 		id: x,
-// 		name: x
-// 	}))
-// }
-
-// export const getReps = function() {
-// 	return Array.from({ length: 20 }, (v, k) => k + 1).map(x => ({
-// 		id: x,
-// 		name: x
-// 	}))
-// }

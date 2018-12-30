@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly with weight 1`] = `
+exports[`select renders correctly with weight 1`] = `
 <div
   className="keanu-movies"
 >
@@ -15,7 +15,7 @@ exports[`renders correctly with weight 1`] = `
     id="9"
     name="keanumovies"
     onChange={[MockFunction]}
-    value={9}
+    value="9"
   >
     <option
       value={-1}

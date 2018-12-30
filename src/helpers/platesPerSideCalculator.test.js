@@ -35,11 +35,11 @@ describe('platesCalculator', () => {
 		).toBeTruthy()
 	})
 
-	it('test calculation for 120', () => {
+	it('test calculation for 358.5', () => {
 		const results = sut(plates, 358.5)
 		const keys = Object.keys(results)
 
-		// make sure we have three 45's and two 10's
+		// make sure we have three 45's, two 10's, one 1.25 and one .5
 		expect(
 			keys.reduce((accum, cur) => {
 				if (cur === '45') {

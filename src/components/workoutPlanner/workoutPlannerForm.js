@@ -9,8 +9,9 @@ const WorkoutPlannerForm = ({ lifts, options, actions }) => {
 			<h1 className={'workout-header'}>
 				Workout: {new Date().toDateString()}
 			</h1>
-			{lifts.map((lift, index) => (
-				<>
+			{/* create Lift components from the array of lift objects */
+			lifts.map((lift, index) => (
+				<React.Fragment key={lift.id}>
 					<Lift
 						key={lift.id}
 						lift={lift}
@@ -22,7 +23,7 @@ const WorkoutPlannerForm = ({ lifts, options, actions }) => {
 						onChange={actions.onChange}
 					/>
 					{index < lifts.length - 1 && <hr />}
-				</>
+				</React.Fragment>
 			))}
 			<div className={'buttons'}>
 				<button

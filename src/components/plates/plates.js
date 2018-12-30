@@ -5,7 +5,10 @@ import { plates } from '../../configuration/config.json'
 import './plates.css'
 
 const Plates = props => {
+	// get the plates' count
 	const platesPerSide = platesCalculator(plates, props.weight, 45)
+	// iterate through the plates and generate a friendly
+	// string of the above breakdown
 	const content = Object.keys(platesPerSide)
 		.sort((x, y) => y - x)
 		.reduce((output, key) => {
@@ -13,7 +16,6 @@ const Plates = props => {
 			const spacer = output ? ', ' : ''
 
 			if (count > 0) {
-				// 45: 2
 				return `${output}${spacer}${key}: ${count}`
 			}
 			return output

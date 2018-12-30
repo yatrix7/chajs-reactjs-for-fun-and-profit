@@ -2,7 +2,6 @@ import React from 'react'
 import { string, object, func } from 'prop-types'
 import Select from '../select/select'
 import Plates from '../plates/plates'
-
 import './lift.css'
 
 const Lift = ({ lift, label, options, onChange }) => {

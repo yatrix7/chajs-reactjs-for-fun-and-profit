@@ -1,3 +1,4 @@
+// reverse the order of items
 const reverse = function(x, y) {
 	return y - x
 }

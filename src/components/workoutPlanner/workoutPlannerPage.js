@@ -18,9 +18,12 @@ class WorkoutPlannerPage extends Component {
 		this.onSave = this.onSave.bind(this)
 	}
 
+	// on mount, make the hella fake api calls to get our selects' options
 	componentDidMount() {
+		// must bind `this` or we won't have the correct context to set state inside `.then()`
 		Promise.all([getLifts(), getSets(), getReps()]).then(
 			function(results) {
+				// destructure the array of arrays from the promise resolution
 				const [liftOptions, setOptions, repOptions] = results
 
 				this.setState({
@@ -34,18 +37,24 @@ class WorkoutPlannerPage extends Component {
 
 	onAdd() {
 		this.setState({
+			// spread the current lifts into state
+			// and add the new one via our factory
 			lifts: [...this.state.lifts, liftFactory.of()]
 		})
 	}
 
 	onChange(e) {
 		// each element has the lift's unique id in its id
-		console.log(e.target)
 		const idParts = e.target.id.split('-'),
+			// destructure the id out of the array
 			[, id] = idParts,
+			// spread lifts array form state into a new array
 			lifts = [...this.state.lifts],
+			// find the lift the onChange event is modifying
 			index = lifts.findIndex(l => l.id === id)
 
+		// spread the props from the lift
+		// and overwrite the new prop that's being changed via onChange
 		lifts[index] = {
 			...lifts[index],
 			[e.target.name]: parseInt(e.target.value || 0, 10)
@@ -57,6 +66,7 @@ class WorkoutPlannerPage extends Component {
 	}
 
 	onSave() {
+		// nowhere to save to, so print to verify result
 		console.log(this.state.lifts)
 	}
 
