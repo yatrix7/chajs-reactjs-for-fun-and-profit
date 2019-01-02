@@ -1,91 +1,67 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import liftFactory from '../../helpers/liftFactory'
 import WorkoutPlannerForm from './workoutPlannerForm'
 import { getLifts, getSets, getReps } from '../../api/liftApi'
 
-class WorkoutPlannerPage extends Component {
-	constructor(props) {
-		super(props)
+function WorkoutPlannerPage() {
+	const [lifts, setLifts] = useState([liftFactory.of()]),
+		[liftOptions, setLiftOptions] = useState([]),
+		[setOptions, setsetOptions] = useState([]),
+		[repOptions, setrepOptions] = useState([])
 
-		this.state = {
-			lifts: [liftFactory.of()],
-			liftOptions: [],
-			setOptions: [],
-			repOptions: []
-		}
-		this.onAdd = this.onAdd.bind(this)
-		this.onChange = this.onChange.bind(this)
-		this.onSave = this.onSave.bind(this)
-	}
+	// make the hella fake api calls to get our selects' options
+	// useEffect allows sideeffects in the component
+	useEffect(() => {
+		Promise.all([getLifts(), getSets(), getReps()]).then(function(results) {
+			// destructure the array of arrays from the promise resolution
+			const [liftOptions, setOptions, repOptions] = results
 
-	// on mount, make the hella fake api calls to get our selects' options
-	componentDidMount() {
-		// must bind `this` or we won't have the correct context to set state inside `.then()`
-		Promise.all([getLifts(), getSets(), getReps()]).then(
-			function(results) {
-				// destructure the array of arrays from the promise resolution
-				const [liftOptions, setOptions, repOptions] = results
-
-				this.setState({
-					liftOptions,
-					setOptions,
-					repOptions
-				})
-			}.bind(this)
-		)
-	}
-
-	onAdd() {
-		this.setState({
-			// spread the current lifts into state
-			// and add the new one via our factory
-			lifts: [...this.state.lifts, liftFactory.of()]
+			setLiftOptions(liftOptions)
+			setsetOptions(setOptions)
+			setrepOptions(repOptions)
 		})
+	}, [])
+
+	function onAdd() {
+		setLifts([...lifts, liftFactory.of()])
 	}
 
-	onChange(e) {
+	function onChange(e) {
 		// each element has the lift's unique id in its id
 		const idParts = e.target.id.split('-'),
 			// destructure the id out of the array
 			[, id] = idParts,
 			// spread lifts array form state into a new array
-			lifts = [...this.state.lifts],
+			updatedLifts = [...lifts],
 			// find the lift the onChange event is modifying
-			index = lifts.findIndex(l => l.id === id)
+			index = updatedLifts.findIndex(l => l.id === id)
 
-		// spread the props from the lift
-		// and overwrite the new prop that's being changed via onChange
-		lifts[index] = {
-			...lifts[index],
+		// spread the props from the lift and overwrite
+		// the new prop that's being changed via onChange
+		updatedLifts[index] = {
+			...updatedLifts[index],
 			[e.target.name]: parseInt(e.target.value || 0, 10)
 		}
 
-		this.setState({
-			lifts
-		})
+		setLifts(updatedLifts)
 	}
 
-	onSave() {
+	function onSave() {
 		// nowhere to save to, so print to verify result
-		console.log(this.state.lifts)
+		console.log(lifts)
 	}
 
-	render() {
-		const { lifts, ...options } = this.state
-		const { onAdd, onChange, onSave } = this
-
-		return (
-			<WorkoutPlannerForm
-				lifts={lifts}
-				options={options}
-				actions={{
-					onChange,
-					onAdd,
-					onSave
-				}}
-			/>
-		)
-	}
+	return (
+		<WorkoutPlannerForm
+			lifts={lifts}
+			options={{ liftOptions, setOptions, repOptions }}
+			actions={{
+				onChange,
+				onAdd,
+				onSave
+			}}
+		/>
+	)
 }
 
 export default WorkoutPlannerPage
