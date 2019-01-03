@@ -6,7 +6,7 @@ import { getLifts, getSets, getReps } from '../../api/liftApi'
 function WorkoutPlannerPage() {
 	const [lifts, setLifts] = useState([liftFactory.of()]),
 		[liftOptions, setLiftOptions] = useState([]),
-		[setOptions, setsStOptions] = useState([]),
+		[setOptions, setsSetOptions] = useState([]),
 		[repOptions, setRepOptions] = useState([])
 
 	// make the hella fake api calls to get our selects' options
@@ -17,7 +17,7 @@ function WorkoutPlannerPage() {
 			const [liftOptions, setOptions, repOptions] = results
 
 			setLiftOptions(liftOptions)
-			setsStOptions(setOptions)
+			setsSetOptions(setOptions)
 			setRepOptions(repOptions)
 		})
 	}, [])
