@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with weight 1`] = `
+<svg
+  className="svg"
+  viewBox="0 0 100 100"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <circle
+    cx="50"
+    cy="50"
+    fill="none"
+    r="45"
+    stroke="#0000FF"
+    strokeWidth="4"
+  />
+  <circle
+    cx="50"
+    cy="50"
+    fill="none"
+    r="33"
+    stroke="#0000cc"
+    strokeWidth="20"
+  />
+  <circle
+    cx="50"
+    cy="50"
+    fill="none"
+    r="21"
+    stroke="#0000FF"
+    strokeWidth="4"
+  />
+  <circle
+    cx="50"
+    cy="50"
+    fill="none"
+    r="14"
+    stroke="#323232"
+    strokeWidth="12"
+  />
+  <text
+    className="fo-five"
+  >
+    <tspan
+      x="13"
+      y="51"
+    >
+      45
+    </tspan>
+    <tspan
+      x="12"
+      y="57"
+    >
+      lbs
+    </tspan>
+  </text>
+  <text
+    className="upside-down-fo-five"
+  >
+    <tspan
+      x="13"
+      y="50"
+    >
+      45
+    </tspan>
+    <tspan
+      x="12"
+      y="57"
+    >
+      lbs
+    </tspan>
+  </text>
+</svg>
+`;

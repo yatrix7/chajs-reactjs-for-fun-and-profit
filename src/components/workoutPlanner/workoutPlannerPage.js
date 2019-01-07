@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import liftFactory from '../../helpers/liftFactory'
 import WorkoutPlannerForm from './workoutPlannerForm'
 import { getLifts, getSets, getReps } from '../../api/liftApi'
+import LoadingScreen from '../loadingScreen/loadingScreen'
 
 class WorkoutPlannerPage extends Component {
 	constructor(props) {
 		super(props)
 
 		this.state = {
+			isLoading: false,
 			lifts: [liftFactory.of()],
 			liftOptions: [],
 			setOptions: [],
@@ -20,6 +22,7 @@ class WorkoutPlannerPage extends Component {
 
 	// on mount, make the hella fake api calls to get our selects' options
 	componentDidMount() {
+		this.beginAjaxCall()
 		// must bind `this` or we won't have the correct context to set state inside `.then()`
 		Promise.all([getLifts(), getSets(), getReps()]).then(
 			function(results) {
@@ -31,8 +34,21 @@ class WorkoutPlannerPage extends Component {
 					setOptions,
 					repOptions
 				})
+				this.endAjaxCall()
 			}.bind(this)
 		)
+	}
+
+	beginAjaxCall() {
+		this.setState({
+			isLoading: true
+		})
+	}
+
+	endAjaxCall() {
+		this.setState({
+			isLoading: false
+		})
 	}
 
 	onAdd() {
@@ -74,7 +90,7 @@ class WorkoutPlannerPage extends Component {
 		const { lifts, ...options } = this.state
 		const { onAdd, onChange, onSave } = this
 
-		return (
+		return !this.state.isLoading ? (
 			<WorkoutPlannerForm
 				lifts={lifts}
 				options={options}
@@ -84,6 +100,8 @@ class WorkoutPlannerPage extends Component {
 					onSave
 				}}
 			/>
+		) : (
+			<LoadingScreen />
 		)
 	}
 }
