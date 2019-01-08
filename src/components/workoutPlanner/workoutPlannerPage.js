@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react'
 import liftFactory from '../../helpers/liftFactory'
 import WorkoutPlannerForm from './workoutPlannerForm'
 import { getLifts, getSets, getReps } from '../../api/liftApi'
+import LoadingScreen from '../loadingScreen/loadingScreen'
 
 function WorkoutPlannerPage() {
 	const [lifts, setLifts] = useState([liftFactory.of()]),
+		[isLoading, setIsLoading] = useState(false),
 		[liftOptions, setLiftOptions] = useState([]),
 		[setOptions, setSetOptions] = useState([]),
 		[repOptions, setRepOptions] = useState([])
@@ -12,6 +14,8 @@ function WorkoutPlannerPage() {
 	// make the hella fake api calls to get our selects' options
 	// useEffect allows sideeffects in the component
 	useEffect(() => {
+		beginAjaxCall()
+
 		Promise.all([getLifts(), getSets(), getReps()]).then(function(results) {
 			// destructure the array of arrays from the promise resolution
 			const [liftOptions, setOptions, repOptions] = results
@@ -19,6 +23,8 @@ function WorkoutPlannerPage() {
 			setLiftOptions(liftOptions)
 			setSetOptions(setOptions)
 			setRepOptions(repOptions)
+
+			endAjaxCall()
 		})
 	}, [])
 
@@ -46,12 +52,20 @@ function WorkoutPlannerPage() {
 		setLifts(updatedLifts)
 	}
 
+	function beginAjaxCall() {
+		setIsLoading(true)
+	}
+
+	function endAjaxCall() {
+		setIsLoading(false)
+	}
+
 	function onSave() {
 		// nowhere to save to, so print to verify result
 		console.log(lifts)
 	}
 
-	return (
+	return !isLoading ? (
 		<WorkoutPlannerForm
 			lifts={lifts}
 			options={{ liftOptions, setOptions, repOptions }}
@@ -61,6 +75,8 @@ function WorkoutPlannerPage() {
 				onSave
 			}}
 		/>
+	) : (
+		<LoadingScreen />
 	)
 }
 

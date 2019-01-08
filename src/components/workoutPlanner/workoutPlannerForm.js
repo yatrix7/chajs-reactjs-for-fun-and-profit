@@ -6,9 +6,10 @@ import './workout.css'
 const WorkoutPlannerForm = ({ lifts, options, actions }) => {
 	return (
 		<form className={'container'}>
-			<h1 className={'workout-header'}>
-				Workout: {new Date().toDateString()}
-			</h1>
+			<h1 className={'workout-header'}>Mah Gainz App</h1>
+			<h2 className={'workout-header'}>
+				Workout: {new Date().toLocaleDateString()}
+			</h2>
 			{/* create Lift components from the array of lift objects */
 			lifts.map((lift, index) => (
 				<React.Fragment key={lift.id}>

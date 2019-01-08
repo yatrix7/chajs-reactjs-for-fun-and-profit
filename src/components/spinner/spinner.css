@@ -1,0 +1,28 @@
+.fo-five {
+	fill: #fff;
+	font: 8px sans-serif;
+}
+
+.upside-down-fo-five {
+	fill: #fff;
+	font: 8px sans-serif;
+	transform: rotate(0.5turn);
+	transform-origin: 50% 50%;
+}
+
+.svg {
+	animation-name: platemation;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	transform-origin: 50% 50%;
+	display: inline-block;
+}
+
+@keyframes platemation {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}

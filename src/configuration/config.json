@@ -1,5 +1,5 @@
 {
-	"delay": 1000,
+	"delay": 4000,
 	"plates": [45, 35, 25, 10, 5, 2.5, 1.25, 1, 0.5],
 	"lifts": [
 		{ "liftId": 1, "name": "Low-bar Squat" },
